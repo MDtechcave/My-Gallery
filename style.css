@@ -34,11 +34,8 @@ button{
 button.active,
 button:hover {
 	background:#CC5801;
-    color: #yam;
+    color: #80400B;
 }
-
-	
-
 
 .gallery{
 	display:grid;
@@ -94,4 +91,4 @@ button:hover {
 	.gallery{
 		grid-template-columns:1fr;
 	}
-}-
+}
