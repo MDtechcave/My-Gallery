@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "UTF-8"/>
+	<meta name = "viewport" content= "width=device-width,initial-scale=1.0"/>
+	<title> Simple Gallery</title>
+	<link rel= "stylesheet" href="style.css"/>
+</head>
+<body>
+	<header class="site-header">
+		<img src="imvelaphi_Logo.png" alt="Imvelaphi Gallery Logo" class="logo">
+	</header>
+		<div class = "filter-buttons">
+			<button onclick = "filterImages('all')" class= "active">All</button>
+			<button onclick = "filterImages('landscape')" > Landscapes </button>
+			<button onclick = "filterImages('portrait')" > Portraits </button>
+			<button onclick = "filterImages('architecture')" > Architecture </button>
+		</div>
+
+	<main class= "gallery">
+		<div class = "card portrait">
+			<img src = "Xhosa_women.jpg" alt = "Portrait">
+			<div class="overlay">
+				<p>Portrait of</p>
+			</div>
+			<p class="title"> XHOSA WOMEN</p>
+		</div>
+		<div class = "card portrait">
+			<img src = "Imbiza_ZesXhosa.jpg" alt = "Portrait ">
+			<div class="overlay">
+				<p> Portrait of</p>
+			</div>
+			<p> IMBIZA ZES'XHOSA</p>
+		</div>
+		
+		<div class = "card portrait">
+			<img src = "Umqombothi.jpg" alt = "Portrait">
+			<div class="overlay">
+				<p> Portrait of</p>
+			</div
+			<p> UMQOMBOTHI </p>
+		</div>
+		
+		<div class = "card portrait">
+			<img src = "AmaKrwala.jpg" alt = "Portrait">
+			<div class="overlay">
+				<p> Portrait of</p>
+			</div
+			<p> AMAKRWALA </p>
+		</div>
+		
+		<div class = "card landscape">
+			<img src = "Willowvale.jpg" alt = "landscape">
+			<div class="overlay">
+				<p> Landscape of</p>
+			</div
+			<p> WILLOWVALE </p>
+		</div>
+		
+		<div class = "card landscape">
+			<img src = "Kilele.jpg" alt = "Landscape">
+			<div class="overlay">
+				<p> Landscape of</p>
+			</div
+			<p> KILELE </p>
+		</div>
+		
+		<div class = "card landscape">
+			<img src = "Sterkspruit.jpg" alt = "Landscape">
+			<div class="overlay">
+				<p> Landscape of</p>
+			</div
+			<p> STERKSPRUIT </p>
+		</div>
+		
+		<div class = "card landscape">
+			<img src = "Mqanduli.jpg" alt = "Landscape">
+			<div class="overlay">
+				<p> Landscape of</p>
+			</div
+			<p> MQANDULI </p>
+		</div>
+		
+		<div class = "card architecture">
+			<img src = "Uitenhage.jpg" alt = "Architecture">
+			<div class="overlay">
+				<p> Architecture of</p>
+			</div
+			<p> UITENHAGE </p>
+		</div>
+		
+		<div class = "card architecture">
+			<img src = "King_Williams_Town.jpg" alt = "Architecture">
+			<div class="overlay">
+				<p> Architecture of</p>
+			</div
+			<p> KING WILLIAMS TOWN </p>
+		</div>
+		
+		<div class = "card architecture">
+			<img src = "Cradock.jpg" alt = "architecture">
+			<div class="overlay">
+				<p> Architecture of</p>
+			</div
+			<p> CRADOCK </p>
+		</div>
+		
+		<div class = "card architecture">
+			<img src = "Grahamstown.jpg" alt = "Architecture">
+			<div class="overlay">
+				<p> Architecture of</p>
+			</div
+			<p> GRAHAMSTOWN </p>
+		</div>
+		</main>
+	
+<script>
+    function filterImages(category) {
+      const buttons = document.querySelectorAll('.filter-buttons button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Add active class to clicked button
+      event.target.classList.add('active');
+    }
+ </script>
+
+  </body>
+  </html>
