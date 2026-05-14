@@ -1,272 +1,447 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
-	<meta charset = "UTF-8"/>
-	<meta name = "viewport" content= "width=device-width,initial-scale=1.0"/>
-	<title> Simple Gallery</title>
-	<link rel= "stylesheet" href="style.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Imvelaphi Gallery</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#0f0f0f;
+      color:white;
+      font-family:Arial, Helvetica, sans-serif;
+      min-height:100vh;
+    }
+
+    /* HEADER */
+
+    .site-header{
+      width:100%;
+      padding:20px 40px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      background:#111;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+    }
+
+    .logo{
+      width:120px;
+      height:auto;
+    }
+
+    /* HERO */
+
+    .hero{
+      text-align:center;
+      padding:90px 20px 50px;
+    }
+
+    .hero h1{
+      font-size:4rem;
+      margin-bottom:20px;
+      letter-spacing:2px;
+    }
+
+    .hero p{
+      max-width:700px;
+      margin:auto;
+      color:#cfcfcf;
+      line-height:1.8;
+      font-size:1.1rem;
+    }
+
+    /* FILTER BUTTONS */
+
+    .filter-buttons{
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+      padding:20px;
+      margin-bottom:30px;
+    }
+
+    .filter-buttons button{
+      background:#1d1d1d;
+      color:white;
+      border:none;
+      padding:12px 24px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:0.3s ease;
+      font-size:0.95rem;
+    }
+
+    .filter-buttons button:hover{
+      background:#c49b63;
+      color:black;
+      transform:translateY(-2px);
+    }
+
+    .filter-buttons button.active{
+      background:#c49b63;
+      color:black;
+      font-weight:bold;
+    }
+
+    /* GALLERY */
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+      gap:28px;
+      padding:20px 40px 60px;
+    }
+
+    /* CARD */
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      border-radius:18px;
+      background:#151515;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+      transition:0.4s ease;
+      animation:fadeUp 0.7s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+    }
+
+    .card img{
+      width:100%;
+      height:340px;
+      object-fit:cover;
+      display:block;
+      transition:0.5s ease;
+    }
+
+    .card:hover img{
+      transform:scale(1.05);
+    }
+
+    /* OVERLAY */
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to top,
+        rgba(0,0,0,0.9),
+        rgba(0,0,0,0.1)
+      );
+
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:24px;
+      opacity:0;
+      transition:0.4s ease;
+    }
+
+    .card:hover .overlay{
+      opacity:1;
+    }
+
+    .overlay h3{
+      font-size:1.5rem;
+      margin-bottom:8px;
+    }
+
+    .overlay p{
+      color:#d4d4d4;
+      line-height:1.5;
+    }
+
+    /* CARD TITLE */
+
+    .title{
+      padding:18px;
+      text-align:center;
+      font-weight:bold;
+      letter-spacing:1px;
+      background:#151515;
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:2.8rem;
+      }
+
+      .gallery{
+        padding:20px;
+      }
+
+      .card img{
+        height:300px;
+      }
+    }
+
+  </style>
 </head>
+
 <body>
-	<header class="site-header">
-		<img src="images/Imvelaphi_Logo.png" alt="Imvelaphi Gallery Logo" class="logo">
-	</header>
-		<div class = "filter-buttons">
-			<button onclick = "filterImages('all')" class= "active">All</button>
-			<button onclick = "filterImages('landscape')" > Landscapes </button>
-			<button onclick = "filterImages('portrait')" > Portraits </button>
-			<button onclick = "filterImages('architecture')" > Architecture </button>
-		</div>
 
-	<main class= "gallery">
-		<div class = "card portrait">
-			<img src = "images/Xhosa_women.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA WOMEN</p>
-		</div>
-		<div class = "card portrait">
-			<img src = "images/Imbiza_ZesXhosa.jpg" alt = "Portrait ">
-			<div class="overlay">
-				<p> Portrait of</p>
-			</div>
-			<p> IMBIZA ZES'XHOSA</p>
-		</div>
-		
-		<div class = "card portrait">
-			<img src = "images/Umqombothi.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p> Portrait of</p>
-			</div
-			<p> UMQOMBOTHI </p>
-		</div>
-		
-		<div class = "card portrait">
-			<img src = "images/AmaKrwala.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p> Portrait of</p>
-			</div
-			<p> AMAKRWALA </p>
-		</div>
+  <!-- HEADER -->
 
-		<div class = "card portrait">
-			<img src = "images/Portrait 1.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+  <header class="site-header">
+    <img src="images/Imvelaphi_Logo.png"
+         alt="Imvelaphi Gallery Logo"
+         class="logo">
+  </header>
 
-		<div class = "card portrait">
-			<img src = "images/Portrait 5.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA</p>
-		</div>
+  <!-- HERO -->
 
-		
-		<div class = "card portrait">
-			<img src = "images/download (2).jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA</p>
-		</div>
+  <section class="hero">
+    <h1>IMVELAPHI</h1>
 
-		
-		<div class = "card portrait">
-			<img src = "images/download.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+    <p>
+      A visual archive celebrating Xhosa heritage,
+      landscapes, traditions, architecture,
+      and the beauty of African identity.
+    </p>
+  </section>
 
-		
-		<div class = "card portrait">
-			<img src = "images/Xhosa initiates after circumcision by Pieter Hugo.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+  <!-- FILTER BUTTONS -->
 
-		
-		<div class = "card portrait">
-			<img src = "images/Winnie Madikizela-Mandela.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+  <div class="filter-buttons">
 
-		
-		<div class = "card portrait">
-			<img src = "images/Africa Afrika.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+    <button class="active"
+            onclick="filterImages('all', event)">
+      All
+    </button>
 
-			<div class = "card portrait">
-			<img src = "images/download (1).jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+    <button onclick="filterImages('portrait', event)">
+      Portraits
+    </button>
 
-		<div class = "card portrait">
-			<img src = "images/Portrait 2.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+    <button onclick="filterImages('landscape', event)">
+      Landscapes
+    </button>
 
-		<div class = "card portrait">
-			<img src = "images/Portrait 3.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+    <button onclick="filterImages('architecture', event)">
+      Architecture
+    </button>
 
-		<div class = "card portrait">
-			<img src = "images/download (4).jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+  </div>
 
-		<div class = "card portrait">
-			<img src = "images/xhosa women (1).jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+  <!-- GALLERY -->
 
-		<div class = "card portrait">
-			<img src = "images/Xhosa Women.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+  <main class="gallery">
 
-		<div class = "card portrait">
-			<img src = "images/download (4).jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+    <!-- PORTRAITS -->
 
-		<div class = "card portrait">
-			<img src = "images/xhosa.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+    <div class="card portrait">
+      <img src="images/Xhosa_women.jpg" alt="Xhosa Women">
 
-		<div class = "card portrait">
-			<img src = "images/Portrait 4.jpg" alt = "Portrait">
-			<div class="overlay">
-				<p>Portrait of</p>
-			</div>
-			<p class="title"> XHOSA </p>
-		</div>
+      <div class="overlay">
+        <h3>Xhosa Women</h3>
+        <p>
+          Traditional portrait photography celebrating
+          Xhosa identity and culture.
+        </p>
+      </div>
 
+      <p class="title">XHOSA WOMEN</p>
+    </div>
 
-		
-		<div class = "card landscape">
-			<img src = "images/Willowvale.jpg" alt = "landscape">
-			<div class="overlay">
-				<p> Landscape of</p>
-			</div
-			<p> WILLOWVALE </p>
-		</div>
-		
-		<div class = "card landscape">
-			<img src = "images/Kilele.jpg" alt = "Landscape">
-			<div class="overlay">
-				<p> Landscape of</p>
-			</div
-			<p> KILELE </p>
-		</div>
-		
-		<div class = "card landscape">
-			<img src = "images/Sterkspruit.jpg" alt = "Landscape">
-			<div class="overlay">
-				<p> Landscape of</p>
-			</div
-			<p> STERKSPRUIT </p>
-		</div>
-		
-		<div class = "card landscape">
-			<img src = "images/Mqanduli.jpg" alt = "Landscape">
-			<div class="overlay">
-				<p> Landscape of</p>
-			</div
-			<p> MQANDULI </p>
-		</div>
-		
-		<div class = "card architecture">
-			<img src = "images/Uitenhage.jpg" alt = "Architecture">
-			<div class="overlay">
-				<p> Architecture of</p>
-			</div
-			<p> UITENHAGE </p>
-		</div>
-		
-		<div class = "card architecture">
-			<img src = "images/King_Williams_Town.jpg" alt = "Architecture">
-			<div class="overlay">
-				<p> Architecture of</p>
-			</div
-			<p> KING WILLIAMS TOWN </p>
-		</div>
-		
-		<div class = "card architecture">
-			<img src = "images/Cradock.jpg" alt = "architecture">
-			<div class="overlay">
-				<p> Architecture of</p>
-			</div
-			<p> CRADOCK </p>
-		</div>
-		
-		<div class = "card architecture">
-			<img src = "images/Grahamstown.jpg" alt = "Architecture">
-			<div class="overlay">
-				<p> Architecture of</p>
-			</div
-			<p> GRAHAMSTOWN </p>
-		</div>
-		</main>
-	
-<script>
-    function filterImages(category) {
-      const buttons = document.querySelectorAll('.filter-buttons button');
-      buttons.forEach(btn => btn.classList.remove('active'));
+    <div class="card portrait">
+      <img src="images/Umqombothi.jpg" alt="Umqombothi">
+
+      <div class="overlay">
+        <h3>Umqombothi</h3>
+        <p>
+          Traditional African beer deeply rooted
+          in ceremony and community.
+        </p>
+      </div>
+
+      <p class="title">UMQOMBOTHI</p>
+    </div>
+
+    <div class="card portrait">
+      <img src="images/AmaKrwala.jpg" alt="AmaKrwala">
+
+      <div class="overlay">
+        <h3>AmaKrwala</h3>
+        <p>
+          Portraits representing the transition
+          into manhood within Xhosa tradition.
+        </p>
+      </div>
+
+      <p class="title">AMAKRWALA</p>
+    </div>
+
+    <div class="card portrait">
+      <img src="images/Winnie Madikizela-Mandela.jpg"
+           alt="Winnie Mandela">
+
+      <div class="overlay">
+        <h3>Winnie Madikizela-Mandela</h3>
+        <p>
+          A symbol of resilience, power,
+          and liberation in South Africa.
+        </p>
+      </div>
+
+      <p class="title">WINNIE MANDELA</p>
+    </div>
+
+    <!-- LANDSCAPES -->
+
+    <div class="card landscape">
+      <img src="images/Willowvale.jpg" alt="Willowvale">
+
+      <div class="overlay">
+        <h3>Willowvale</h3>
+        <p>
+          Quiet landscapes capturing the spirit
+          of the Eastern Cape.
+        </p>
+      </div>
+
+      <p class="title">WILLOWVALE</p>
+    </div>
+
+    <div class="card landscape">
+      <img src="images/Kilele.jpg" alt="Kilele">
+
+      <div class="overlay">
+        <h3>Kilele</h3>
+        <p>
+          Open skies and natural scenery
+          rooted in rural beauty.
+        </p>
+      </div>
+
+      <p class="title">KILELE</p>
+    </div>
+
+    <div class="card landscape">
+      <img src="images/Mqanduli.jpg" alt="Mqanduli">
+
+      <div class="overlay">
+        <h3>Mqanduli</h3>
+        <p>
+          Rolling landscapes and heritage-rich
+          surroundings.
+        </p>
+      </div>
+
+      <p class="title">MQANDULI</p>
+    </div>
+
+    <!-- ARCHITECTURE -->
+
+    <div class="card architecture">
+      <img src="images/Uitenhage.jpg" alt="Uitenhage">
+
+      <div class="overlay">
+        <h3>Uitenhage</h3>
+        <p>
+          Historic streets and architecture
+          reflecting layered histories.
+        </p>
+      </div>
+
+      <p class="title">UITENHAGE</p>
+    </div>
+
+    <div class="card architecture">
+      <img src="images/Grahamstown.jpg" alt="Grahamstown">
+
+      <div class="overlay">
+        <h3>Grahamstown</h3>
+        <p>
+          Colonial-era architecture meeting
+          modern South African identity.
+        </p>
+      </div>
+
+      <p class="title">GRAHAMSTOWN</p>
+    </div>
+
+    <div class="card architecture">
+      <img src="images/King_Williams_Town.jpg"
+           alt="King Williams Town">
+
+      <div class="overlay">
+        <h3>King Williams Town</h3>
+        <p>
+          Buildings carrying stories of
+          history, resistance, and memory.
+        </p>
+      </div>
+
+      <p class="title">KING WILLIAMS TOWN</p>
+    </div>
+
+  </main>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    function filterImages(category, event){
 
       const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        if (category === 'all' || card.classList.contains(category)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+
+      const buttons =
+        document.querySelectorAll('.filter-buttons button');
+
+      buttons.forEach(button => {
+        button.classList.remove('active');
       });
 
-      // Add active class to clicked button
       event.target.classList.add('active');
-    }
- </script>
 
-  </body>
-  </html>
+      cards.forEach(card => {
+
+        if(
+          category === 'all' ||
+          card.classList.contains(category)
+        ){
+          card.style.display = 'block';
+        }
+        else{
+          card.style.display = 'none';
+        }
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
